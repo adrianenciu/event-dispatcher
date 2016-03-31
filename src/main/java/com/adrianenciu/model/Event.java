@@ -1,8 +1,9 @@
 package com.adrianenciu.model;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class Event {
+public class Event implements Serializable {
     private String type;
     private String status;
     private Map<String, String> payload;
