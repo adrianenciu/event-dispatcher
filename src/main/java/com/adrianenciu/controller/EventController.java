@@ -24,7 +24,7 @@ public class EventController {
         LOGGER.info("clientId {}", clientId);
         LOGGER.info("destinationId {}", destinationId);
         eventService.send(event);
-        return event.getType() + " successfully processed";
+        return event + " successfully processed";
     }
 
     @RequestMapping(method = RequestMethod.GET)

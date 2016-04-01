@@ -1,7 +1,6 @@
 package com.adrianenciu.service;
 
 import com.adrianenciu.model.Event;
-import org.apache.activemq.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.jms.core.JmsTemplate;
@@ -14,12 +13,12 @@ public class EventServiceImpl implements EventService {
     private JmsTemplate jmsTemplate;
 
     @Override
-    public void send(final Event event) {
-        jmsTemplate.send("test-queue", (session) -> session.createObjectMessage(event));
+    public void send(Event event) {
+        jmsTemplate.convertAndSend("test-queue", event);
     }
 
-//    @JmsListener(destination = "test-queue")
-//    public void receive(Message message) {
-//        System.out.println(message);
-//    }
+    @JmsListener(destination = "test-queue")
+    public void receive(Event event) {
+        System.out.println(event);
+    }
 }
